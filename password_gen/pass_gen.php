@@ -31,13 +31,50 @@ $big_letters = implode(range("A", "Z"));
 $numbers = implode(range(0, 9));
 $special_chars = "%$><*!()[]{}";
 
-$pass = (new Password)->generate(9, $small_letters, $big_letters, $special_chars);
-var_dump($pass->password);
+$pass = (new Password)->generate(13, $small_letters, $big_letters, $special_chars, $numbers);
+$pass2 = (new Password)->generate(13, $small_letters, $special_chars);
 
 
-class passworTest extends Password{
+
+class passwordTest
+{
     public $testedPassword;
-    public function __construct($lenght, $small_letters, $big_letters, $numbers, $special_chars){
-        $this->testedPassword = (new Password)->generate()
+    public function __construct()
+    {
+        $this->testedPassword = '';
+    }
+    public function setPassword(string $password): passwordTest
+    {
+        $this->testedPassword = $password;
+        return $this;
+    }
+
+    public static function lenghtTest(string $password): bool
+    {
+        if (strlen($password) < 14) {
+            echo "lenght test: failed";
+            return false;
+        } else {
+            echo "lenght test: ok";
+            return true;
+        }
+    }
+
+    public static function complexityTest(string $password, string...$parameters)
+    {
+
+        for ($i = 0; $i < strlen($password); $i++) {
+            for ($x = 0; $x < strlen($parameters[$x]); $x++){
+
+                if (str_contains($parameters[$i], $password[$i])) {
+                    //echo $i.". Run: $password[$i]\n";
+    
+                    }
+    
+                }
+            }
+
+        }
     }
 }
+passwordTest::complexityTest($pass2->password, $small_letters, $big_letters, $numbers, $special_chars);
