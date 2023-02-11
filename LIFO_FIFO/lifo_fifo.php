@@ -33,10 +33,6 @@ class Fifo implements Pushable{
     }
 
     public function pop(): mixed{
-        /*echo $this->fifo[0];
-        unset($this->fifo[0]);
-        array_values($this->fifo)[0];
-        */
         echo array_shift($this->fifo);
         array_values($this->fifo);
         return $this;
